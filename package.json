@@ -6,6 +6,8 @@
   "license": "MIT",
   "scripts": {
     "format": "prettier --write \"src/**/*.ts\"",
+    "migrate:generate": "ts-node ./node_modules/.bin/typeorm migration:generate -n GenerateMigrations",
+    "migrate:run": "ts-node ./node_modules/.bin/typeorm migration:run",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:dev": "nodemon",
     "start:debug": "nodemon --config nodemon-debug.json",
