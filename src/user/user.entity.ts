@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {Entity, Column, PrimaryGeneratedColumn, ManyToOne} from 'typeorm';
+import {Facility} from '../facility/facility.entity';
 
 @Entity()
 export class User {
@@ -16,4 +17,7 @@ export class User {
 
     @Column({ length: 500 })
     email: string;
+
+    @ManyToOne(type => Facility, facility => facility.users)
+    facility: Facility;
 }

@@ -9,8 +9,8 @@ export class UserService {
     private saltRounds = 10;
 
     constructor(
-        @InjectRepository(User)
-        private readonly userRepository: Repository<User>) {}
+        @InjectRepository(User) private readonly userRepository: Repository<User>,
+    ) {}
 
     async getUsers(): Promise<User[]> {
         return await this.userRepository.find();

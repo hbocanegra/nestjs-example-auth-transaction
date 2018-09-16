@@ -2,6 +2,7 @@ import { Controller, Post, HttpStatus, HttpCode, Get, Response, Body } from '@ne
 import { AuthService } from './auth.service';
 import { UserService } from '../user/user.service';
 import { User } from '../user/user.entity';
+import { IAuthCredential } from './interfaces/auth-credential.interface';
 
 @Controller('auth')
 export class AuthController {
@@ -10,12 +11,12 @@ export class AuthController {
         private readonly userService: UserService) {}
 
     @Post('login')
-    async loginUser(@Response() res: any, @Body() body: User) {
+    async loginUser(@Response() res: any, @Body() body: IAuthCredential) {
         if (!(body && body.username && body.password)) {
             return res.status(HttpStatus.FORBIDDEN).json({ message: 'Username and password are required!' });
         }
 
-        const user = await this.userService.getUserByUsername(body.username);
+        const user: User = await this.userService.getUserByUsername(body.username);
 
         if (user) {
             if (await this.userService.compareHash(body.password, user.passwordHash)) {
