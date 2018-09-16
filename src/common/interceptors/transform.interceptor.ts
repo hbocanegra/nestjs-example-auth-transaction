@@ -12,14 +12,3 @@ export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> 
         return call$.pipe(map(data => ({ data })));
     }
 }
-//
-// @Injectable()
-// export class TransformInterceptor implements NestInterceptor {
-//     intercept(
-//         context: ExecutionContext,
-//         call$: Observable<any>,
-//     ): Observable<any> {
-//         return call$.pipe(map(data => classToPlain(data)));
-//     }
-// }
-
