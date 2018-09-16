@@ -19,7 +19,7 @@ export class AuthController {
         const user: User = await this.userService.getUserByUsername(body.username);
 
         if (user) {
-            if (await this.userService.compareHash(body.password, user.passwordHash)) {
+            if (await this.userService.compareHash(body.password, user.password)) {
                 return res.status(HttpStatus.OK).json(await this.authService.createToken(user.id, user.username));
             }
         }
@@ -40,7 +40,7 @@ export class AuthController {
         } else {
             user = await this.userService.createUser(body);
             if (user) {
-                user.passwordHash = undefined;
+                user.password = undefined;
             }
         }
 

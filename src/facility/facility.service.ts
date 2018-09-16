@@ -29,8 +29,7 @@ export class FacilityService {
         facility.name = obj.facility.name;
         facility.streetNumber = obj.facility.streetNumber;
         facility.streetName = obj.facility.streetName;
-        facility.state = obj.facility.state;
-        facility.province = obj.facility.province;
+        facility.stateProvince = obj.facility.stateProvince;
         facility.country = obj.facility.country;
         facility.email = obj.facility.email;
         return facility;

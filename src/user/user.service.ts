@@ -20,11 +20,14 @@ export class UserService {
         return (await this.userRepository.find({ username }))[0];
     }
 
+    async getUserById(id: string): Promise<User> {
+        return (await this.userRepository.find({ id }))[0];
+    }
+
     async createUser(user: User): Promise<User> {
-        user.passwordHash = await this.getHash(user.password);
+        user.password = await this.getHash(user.password);
 
         // clear password as we don't persist passwords
-        user.password = undefined;
         return this.userRepository.save(user);
     }
 

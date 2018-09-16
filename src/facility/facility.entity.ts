@@ -9,17 +9,14 @@ export class Facility {
     @Column({ length: 500 })
     name: string;
 
-    @Column({ length: 500, nullable: true })
-    streetNumber: string;
+    @Column({ nullable: true })
+    streetNumber: number;
 
     @Column({ length: 500, nullable: true })
     streetName: string;
 
     @Column({ length: 500, nullable: true })
-    state: string;
-
-    @Column({ length: 500, nullable: true })
-    province: string;
+    stateProvince: string;
 
     @Column({ length: 500, nullable: true })
     country: string;
