@@ -1,6 +1,6 @@
 import {Entity, Column, PrimaryGeneratedColumn, ManyToOne} from 'typeorm';
 import {Facility} from '../facility/facility.entity';
-import {Exclude, classToPlain} from 'class-transformer';
+
 @Entity()
 export class User {
     @PrimaryGeneratedColumn('uuid')
