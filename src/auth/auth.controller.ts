@@ -17,14 +17,20 @@ export class AuthController {
         }
 
         const user: User = await this.userService.getUserByUsername(body.username);
-
         if (user) {
             if (await this.userService.compareHash(body.password, user.password)) {
-                return res.status(HttpStatus.OK).json(await this.authService.createToken(user.id, user.username));
+                const token = await this.authService.createToken(user);
+                return res.status(HttpStatus.OK).json({
+                    success: true,
+                    payload: token,
+                });
             }
         }
 
-        return res.status(HttpStatus.FORBIDDEN).json({ message: 'Username or password wrong!' });
+        return res.status(HttpStatus.FORBIDDEN).json({
+            success: false,
+            message: 'Username or password wrong!',
+        });
     }
 
     @Post('register')

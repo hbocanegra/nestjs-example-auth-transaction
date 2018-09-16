@@ -17,7 +17,10 @@ export class UserService {
     }
 
     async getUserByUsername(username: string): Promise<User> {
-        return (await this.userRepository.find({ username }))[0];
+        return this.userRepository.findOne({
+            where: { username },
+            relations: ['facility'],
+        });
     }
 
     async getUserById(id: string): Promise<User> {

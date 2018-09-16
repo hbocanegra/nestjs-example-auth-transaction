@@ -1,12 +1,36 @@
-import { IsString, ValidateIf } from 'class-validator';
-import {CreateFacilityDto} from './create-facility.dto';
+import {Exclude, classToPlain} from 'class-transformer';
 
 export class CreateFacilityUserDto {
-    @IsString() readonly username: string;
+    id: number;
+    username: string;
+    email: string;
 
-    @IsString() password: string|undefined;
+    @Exclude()
+    password: string;
 
-    @IsString() readonly email: string;
-
-    @ValidateIf(o => o instanceof CreateFacilityDto) facility: string;
+    toJSON() {
+        return classToPlain(this);
+    }
+    // @IsString() readonly username: string;
+    //
+    // @IsString() password: string|undefined;
+    //
+    // @IsString() readonly email: string;
+    //
+    // @ValidateIf(o => o instanceof CreateFacilityDto) facility: string;
 }
+
+// import {Exclude, classToPlain} from "class-transformer";
+
+// export default class User {
+//     id: number;
+//
+//     email: string;
+//
+//     @Exclude()
+//     password: string;
+//
+//     toJSON() {
+//         return classToPlain(this);
+//     }
+// }

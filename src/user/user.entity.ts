@@ -1,6 +1,6 @@
 import {Entity, Column, PrimaryGeneratedColumn, ManyToOne} from 'typeorm';
 import {Facility} from '../facility/facility.entity';
-
+import {Exclude, classToPlain} from 'class-transformer';
 @Entity()
 export class User {
     @PrimaryGeneratedColumn('uuid')
@@ -9,7 +9,7 @@ export class User {
     @Column({ length: 50, unique: true })
     username: string;
 
-    @Column({ select: false, length: 100, nullable: true })
+    @Column({ length: 100, nullable: true })
     password: string|undefined;
 
     @Column({ length: 500 })
